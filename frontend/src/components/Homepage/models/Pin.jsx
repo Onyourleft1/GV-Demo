@@ -2,7 +2,7 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 
 export default function Pin(props) {
-	const { nodes, materials } = useGLTF("/assets/models/map_pin.glb");
+	const { nodes } = useGLTF("/assets/models/map_pin.glb");
 	return (
 		<group {...props} dispose={null}>
 			<group scale={0.01}>
@@ -10,9 +10,11 @@ export default function Pin(props) {
 					castShadow
 					receiveShadow
 					geometry={nodes.Extrude_remesh_Mat_0.geometry}
-					material={materials.material}
+					// material={materials.material}
 					position={[0.015, -0.029, 0]}
-				/>
+				>
+					<meshStandardMaterial wireframe />
+				</mesh>
 			</group>
 		</group>
 	);

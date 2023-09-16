@@ -1,16 +1,25 @@
 import { OrbitControls, PerspectiveCamera, Stars } from "@react-three/drei";
-import React, { Suspense } from "react";
+import React, { Suspense, useRef } from "react";
 import Model from "./models/Model";
-import Pin from "./models/Pin";
+// import Pin from "./models/Pin";
+import { useFrame } from "@react-three/fiber";
 
 function Scene() {
+	const camGrp = useRef();
+
+	useFrame(() => {
+		// camGrp.current.rotation.y += 0.002;
+	});
 	return (
 		<>
 			<color attach={"background"} args={["black"]} />
-			<PerspectiveCamera makeDefault position={[0, 0, 10]} fov={75} />
+			<group ref={camGrp}>
+				<PerspectiveCamera makeDefault position={[0, 0, 10]} fov={75} />
+			</group>
+
 			<OrbitControls />
 			<ambientLight intensity={10} />
-			<group rotation={[Math.PI / 16 + 0.1, -Math.PI / 2 - 0.7, 0]}>
+			<group>
 				<Suspense
 					fallback={
 						<mesh>
@@ -22,9 +31,12 @@ function Scene() {
 					<Model />
 				</Suspense>
 			</group>
-			<group position={[0, 4, 0]}>
-				<Pin />
+			{/* <group>
+				<Pin position={[0, 4, 0]} />
 			</group>
+			<group rotation-z={-Math.PI / 2}>
+				<Pin position={[0, -4, 0]} rotation-x={Math.PI} />
+			</group> */}
 
 			<Stars />
 		</>
