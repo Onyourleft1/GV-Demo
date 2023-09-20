@@ -1,0 +1,22 @@
+#row_container {
+	.edit_btn {
+		background-color: transparent;
+		border: 2px solid white;
+		border-radius: 50%;
+		aspect-ratio: 1/1;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	.save_btn {
+		background-color: transparent;
+		border: 2px solid white;
+		border-radius: 50%;
+		aspect-ratio: 1/1;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}

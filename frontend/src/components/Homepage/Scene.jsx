@@ -1,11 +1,13 @@
 import { OrbitControls, PerspectiveCamera, Stars } from "@react-three/drei";
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useContext, useRef } from "react";
 import Model from "./models/Model";
 // import Pin from "./models/Pin";
 import { useFrame } from "@react-three/fiber";
+import { PopContext } from "./Homepage";
 
 function Scene() {
 	const camGrp = useRef();
+	const [pop] = useContext(PopContext);
 
 	useFrame(() => {
 		// camGrp.current.rotation.y += 0.002;
@@ -13,11 +15,11 @@ function Scene() {
 	return (
 		<>
 			<color attach={"background"} args={["black"]} />
-			<group ref={camGrp}>
+			<group ref={camGrp} rotation={[Math.PI / 5, Math.PI / 1.4, 0]}>
 				<PerspectiveCamera makeDefault position={[0, 0, 10]} fov={75} />
 			</group>
 
-			<OrbitControls />
+			<OrbitControls enabled={!pop} enablePan={false} enableZoom={false} />
 			<ambientLight intensity={10} />
 			<group>
 				<Suspense
