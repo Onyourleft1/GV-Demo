@@ -60,6 +60,10 @@ function Row(props) {
 				console.log(error.response.data.error);
 			});
 	};
+	const view = (e) => {
+		e.preventDefault();
+		props.up([rowInfo.LAT, rowInfo.LNG]);
+	};
 	return (
 		<TableRow
 			id="row_container"
@@ -136,6 +140,11 @@ function Row(props) {
 			<TableCell style={{ color: "white" }} align="left">
 				<button onClick={deleteLocation} className="edit_btn">
 					<img src="/assets/icons/delete.svg" width={"24px"} alt="" />
+				</button>
+			</TableCell>
+			<TableCell style={{ color: "white" }} align="left">
+				<button onClick={view} className="edit_btn">
+					<img src="/assets/icons/view.svg" width={"24px"} alt="" />
 				</button>
 			</TableCell>
 		</TableRow>

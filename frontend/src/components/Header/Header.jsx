@@ -6,10 +6,10 @@ function Header() {
 	return (
 		<div id="header_container">
 			<Link to={"/"}>
-				<button>Home</button>
+				<button>Map</button>
 			</Link>
 			<Link to={"/Grid"}>
-				<button>Grid</button>
+				<button>Locations</button>
 			</Link>
 		</div>
 	);

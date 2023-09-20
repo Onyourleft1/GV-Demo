@@ -35,12 +35,28 @@ function Homepage() {
 						height: pop ? "80vh" : "0px",
 						transition: "all ease-in-out 0.3s",
 						position: "absolute",
-						top: "5%",
+						top: "10%",
 						left: "5%",
 					}}
 					position={[0, 0, 0]}
 				>
 					<Form />
+				</div>
+				<div
+					style={{
+						position: "absolute",
+						bottom: "1rem",
+						left: 0,
+						width: "100%",
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+						color: "white",
+					}}
+				>
+					<p>Double Click To Add Pin</p>
+					<p>Drag To Circle The Globe</p>
 				</div>
 			</PopContext.Provider>
 		</CoordinatesContext.Provider>

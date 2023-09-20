@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./GridPage.scss";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,9 +8,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Row from "./components/Row/Row";
 import { DataContext } from "../../App";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
 function GridPage() {
 	const [data] = useContext(DataContext);
+	const [mapCenter, setMapCenter] = useState([0, 0]);
+	const updateMap = (value) => {
+		setMapCenter(value);
+	};
 	return (
 		<div id="grid_container">
 			<TableContainer
@@ -44,36 +50,39 @@ function GridPage() {
 							<TableCell style={{ color: "white" }} align="left">
 								Delete
 							</TableCell>
+							<TableCell style={{ color: "white" }} align="left">
+								View On 2D Map
+							</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{data.map((row, index) => (
-							<Row key={index} row={row} />
+							<Row key={index} row={row} up={updateMap} />
 						))}
 					</TableBody>
 				</Table>
 			</TableContainer>
-			{/* <div style={{ width: "300px", height: "300px" }}>
-								<MapContainer
-									center={mapCenter}
-									zoom={1}
-									style={{
-										height: "100%",
-										width: "100%",
-										borderRadius: "20px",
-									}}
-								>
-									<TileLayer
-										url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-										attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-									/>
-									<Marker position={mapCenter}>
-										<Popup>
-											<img src="/logo192.png" alt="" />
-										</Popup>
-									</Marker>
-								</MapContainer>
-							</div> */}
+			<div style={{ width: "90%", height: "600px", marginTop: "2rem" }}>
+				<MapContainer
+					center={mapCenter}
+					zoom={13}
+					style={{
+						height: "100%",
+						width: "100%",
+						borderRadius: "20px",
+					}}
+				>
+					<TileLayer
+						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					/>
+					<Marker position={mapCenter}>
+						<Popup>
+							<img src="/logo192.png" alt="" />
+						</Popup>
+					</Marker>
+				</MapContainer>
+			</div>
 		</div>
 	);
 }
