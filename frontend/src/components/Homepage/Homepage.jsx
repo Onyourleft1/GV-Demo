@@ -53,6 +53,8 @@ function Homepage() {
 						justifyContent: "center",
 						alignItems: "center",
 						color: "white",
+						textTransform: "uppercase",
+						letterSpacing: "5px",
 					}}
 				>
 					<p>Double Click To Add Pin</p>
