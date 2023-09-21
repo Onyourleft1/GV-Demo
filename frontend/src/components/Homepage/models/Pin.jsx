@@ -13,7 +13,7 @@ export default function Pin(props) {
 					// material={materials.material}
 					position={[0.015, -0.029, 0]}
 				>
-					<meshStandardMaterial wireframe />
+					<meshStandardMaterial wireframe color={props.color} />
 				</mesh>
 			</group>
 		</group>

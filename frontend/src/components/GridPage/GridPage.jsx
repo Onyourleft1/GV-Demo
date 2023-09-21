@@ -8,12 +8,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Row from "./components/Row/Row";
 import { DataContext } from "../../App";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+// import "leaflet/dist/leaflet.css";
+import MyMap from "./components/MyMap/MyMap";
 
 function GridPage() {
 	const [data] = useContext(DataContext);
-	const [mapCenter, setMapCenter] = useState([0, 0]);
+	const [mapCenter, setMapCenter] = useState([45, 25]);
 	const updateMap = (value) => {
 		setMapCenter(value);
 	};
@@ -63,25 +64,7 @@ function GridPage() {
 				</Table>
 			</TableContainer>
 			<div style={{ width: "90%", height: "600px", marginTop: "2rem" }}>
-				<MapContainer
-					center={mapCenter}
-					zoom={13}
-					style={{
-						height: "100%",
-						width: "100%",
-						borderRadius: "20px",
-					}}
-				>
-					<TileLayer
-						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-					/>
-					<Marker position={mapCenter}>
-						<Popup>
-							<img src="/logo192.png" alt="" />
-						</Popup>
-					</Marker>
-				</MapContainer>
+				<MyMap mapCenter={mapCenter} data={data} />
 			</div>
 		</div>
 	);
